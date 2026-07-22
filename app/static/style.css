@@ -48,6 +48,10 @@ h3 {
 
 }
 
+a {
+    text-decoration: none;
+}
+
 /*------------------------------------Header-section-----------------------------------------------------*/
 
 header {
@@ -554,26 +558,34 @@ header {
     padding: 3rem 2rem;
 }
 
-.auth-logo {
-    width: 64px;
+.home-logo {
+    width: 100px;
     height: 64px;
-    background: #0D0F1A;
-    border-radius: 16px;
     display: flex;
+    gap: 0.2rem;
     align-items: center;
     justify-content: center;
-    border: 0.5px solid rgba(0, 173, 181, 0.3);
+    color: white;
 }
 
-.home-logo {
-    width: 44px;
-    height: 44px;
-    background: #0D0F1A;
-    border-radius: 8px;
+.auth-logo {
     display: flex;
+    gap: 0.2rem;
     align-items: center;
     justify-content: center;
-    border: 0.5px solid rgba(0, 173, 181, 0.3);
+    flex-direction: column;
+    padding: 0.7rem 1rem;
+    color: rgba(249, 247, 247, 0.7)
+}
+
+.logo-size-auth {
+    width: 5rem;
+
+}
+
+.home-logo-image {
+    width: 9rem;
+    height: 3rem;
 }
 
 

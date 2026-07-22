@@ -7,14 +7,14 @@
         <div class="tracker-items wishlist" id="Wishlist">
             <div class="column-header wishlist">
                 <h3>قائمة الأمنيات</h3>
-                <button type="submit" class="add-job-button">+</button>
+                <button type="submit" class="add-button">+</button>
             </div>
             {% for job in jobs %}
             {% if job['status'] == 'Wishlist' %}
             <div class="job-card" draggable="true" data-job-id="{{ job['job_id'] }}">
                 <div class="job-card-header">
-                    <h3>{{ job['job_title'] }}</h3>
-                    <small>{{ job['company_name'] }}</small>
+                    <h3 class="job-title">{{ job['job_title'] }}</h3>
+                    <small class="company-name">{{ job['company_name'] }}</small>
                 </div>
                 <div class="job-card-date">
                     <small>{{ job['created_at'] }}</small>
@@ -32,8 +32,8 @@
             {% if job['status'] == 'Applied' %}
             <div class="job-card" draggable="true" data-job-id="{{ job['job_id'] }}">
                 <div class="job-card-header">
-                    <h3>{{ job['job_title'] }}</h3>
-                    <small>{{ job['company_name'] }}</small>
+                    <h3 class="job-title">{{ job['job_title'] }}</h3>
+                    <small class="company-name">{{ job['company_name'] }}</small>
                 </div>
                 <div class="job-card-date">
                     <small>{{ job['created_at'] }}</small>
@@ -51,8 +51,8 @@
             {% if job['status'] == 'Interviewing' %}
             <div class="job-card" draggable="true" data-job-id="{{ job['job_id'] }}">
                 <div class="job-card-header">
-                    <h3>{{ job['job_title'] }}</h3>
-                    <small>{{ job['company_name'] }}</small>
+                    <h3 class="job-title">{{ job['job_title'] }}</h3>
+                    <small class="company-name">{{ job['company_name'] }}</small>
                 </div>
                 <div class="job-card-date">
                     <small>{{ job['created_at'] }}</small>
@@ -70,8 +70,8 @@
             {% if job['status'] == 'Offered' %}
             <div class="job-card" draggable="true" data-job-id="{{ job['job_id'] }}">
                 <div class="job-card-header">
-                    <h3>{{ job['job_title'] }}</h3>
-                    <small>{{ job['company_name'] }}</small>
+                    <h3 class="job-title">{{ job['job_title'] }}</h3>
+                    <small class="company-name">{{ job['company_name'] }}</small>
                 </div>
                 <div class="job-card-date">
                     <small>{{ job['created_at'] }}</small>
@@ -89,8 +89,8 @@
             {% if job['status'] == 'Accepted' %}
             <div class="job-card" draggable="true" data-job-id="{{ job['job_id'] }}">
                 <div class="job-card-header">
-                    <h3>{{ job['job_title'] }}</h3>
-                    <small>{{ job['company_name'] }}</small>
+                    <h3 class="job-title">{{ job['job_title'] }}</h3>
+                    <small class="company-name">{{ job['company_name'] }}</small>
                 </div>
                 <div class="job-card-date">
                     <small>{{ job['created_at'] }}</small>
@@ -111,7 +111,7 @@
 </main>
 
 
-<section id="tracker-form-start">
+<section class="form-start">
     <div class="tracker-form">
         <form class="job-info-form" action="{{ url_for('views.add_job') }}" method="POST">
             <div class="job-info-form-grouper">
@@ -127,28 +127,28 @@
             <div class="job-info-form-url">
                 <label for="job_url">رابط الوظيفة</label>
                 <input class="form-input" type="text" id="job_url" name="job_url"
-                       placeholder="https://example.com/job/full-stack-developer">
+                       placeholder="https://example.com">
             </div>
             <div class="job-info-form-title-name">
-                <label for="job_title"> المسمى الوظيفي</label>
+                <label for="job_title">المسمى الوظيفي:</label>
                 <input class="form-input" type="text" id="job_title" name="job_title"
-                       placeholder="Full Stack Developer" required>
+                       placeholder="مثال: مطور مواقع" required>
 
-                <label for="company_name">اسم الشركة</label>
+                <label for="company_name">اسم الشركة:</label>
                 <input class="form-input" type="text" id="company_name" name="company_name"
                        placeholder="مثال: شركة التقنية" required>
 
-                <label for="city">المدينة</label>
+                <label for="city">المدينة:</label>
                 <input class="form-input" type="text" id="city" name="city" placeholder="مثال: الرياض">
 
-                <label for="date_of_publish">تاريخ النشر</label>
+                <label for="date_of_publish">تاريخ النشر:</label>
                 <input class="form-input" type="date" id="date_of_publish" name="date_of_publish">
             </div>
             <div class="job-info-form-statsu-description">
                 <div class="job-info-form-url">
-                    <label for="job_description">الوصف</label>
-                    <input class="form-input discrption" type="text" id="job_description" name="job_description"
-                           placeholder="وصف مختصر عن الوظيفة">
+                    <label for="job_description">ملاحظات (اختياري)</label>
+                    <input class="form-input discrption" type="text" id="notes" name="notes"
+                           placeholder="أي ملاحظات خاصة بهذه الوظيفة">
                 </div>
                 <div class="job-info-form-url">
                     <label for="job_status">الحالة</label>
@@ -162,9 +162,9 @@
                 </div>
             </div>
             <div class="job-info-form-url">
-                <label for="notes">ملاحظات (اختياري)</label>
-                <textarea class="form-input discrption" type="text" id="notes" name="notes"
-                          placeholder="أي ملاحظات خاصة بهذه الوظيفة"></textarea>
+                <label for="notes">الوصف</label>
+                <textarea class="form-input discrption" type="text" id="job_description" name="job_description"
+                          placeholder="وصف مختصر عن الوظيفة"></textarea>
             </div>
             <div class="button-container">
                 <input class="submit-button" type="submit" value="submit">

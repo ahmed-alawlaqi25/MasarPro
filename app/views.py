@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 from supabase import create_client
 import os
 from dotenv import load_dotenv
+import time
 
 load_dotenv()
 
@@ -88,13 +89,21 @@ def get_user_supabase():
 
 @views.route("/application/<job_id>", methods=["GET"])
 def application(job_id):
+    user_id = session["user_id"]
     user_supabase = get_user_supabase()
     if not user_supabase:
         return redirect(url_for("auth.register"))
     job_info_response = user_supabase.table("job").select("*").eq("job_id", job_id).execute()
     jobs = job_info_response.data
+    document_response = user_supabase.table("resumes").select("*").eq("user_id", user_id).execute()
+    documents = document_response.data
 
-    return render_template("application.html", jobs=jobs)
+    service_supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_SERVICE_ROLE_KEY"))
+    for doc in documents:
+        signed = service_supabase.storage.from_("documents").create_signed_url(doc["document_url"], 3600)
+        doc["document_url"] = signed["signedURL"]
+
+    return render_template("application.html", jobs=jobs, documents=documents)
 
 
 @views.route("/switch_status", methods=["POST"])
@@ -145,7 +154,159 @@ def resume_review():
 
 @views.route("/document")
 def document():
-    return render_template("document.html")
+    user_id = session["user_id"]
+    user_supabase = get_user_supabase()
+    if not user_supabase:
+        return redirect(url_for("auth.register"))
+
+    document_response = user_supabase.table("resumes").select("*").eq("user_id", user_id).execute()
+    documents = document_response.data
+
+    service_supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_SERVICE_ROLE_KEY"))
+    for doc in documents:
+        signed = service_supabase.storage.from_("documents").create_signed_url(doc["document_url"], 3600)
+        doc["document_url"] = signed["signedURL"]
+
+    return render_template("document.html", documents=documents)
+
+
+@views.route("/add_document", methods=["POST"])
+def add_document():
+    user_id = session["user_id"]
+    user_supabase = get_user_supabase()
+    if not user_supabase:
+        return redirect(url_for("auth.register"))
+    file = request.files.get("file-upload")
+
+    document_name = file.filename
+    document_type = request.form.get("document_type")
+    file_path = f"{user_id}/{int(time.time())}_{document_name}"
+    file_bytes = file.read()
+
+    user_supabase.auth.set_session(session["access_token"], session["refresh_token"])
+    user_supabase.storage.from_("documents")._client.headers["Authorization"] = f"Bearer {session['access_token']}"
+    user_supabase.storage.from_("documents").upload(file_path, file_bytes, {"content-type": "application/pdf"})
+
+    user_supabase.table("resumes").insert({
+        "user_id": user_id,
+        "document_name": document_name,
+        "document_type": document_type,
+        "document_url": file_path,
+    }).execute()
+
+    redirect_to = request.form.get("redirect_to")
+    return redirect(redirect_to)
+
+
+@views.route("/delete_document", methods=["POST"])
+def delete_document():
+    try:
+        data = request.get_json()
+        user_supabase = get_user_supabase()
+        if not user_supabase:
+            return redirect(url_for("auth.register"))
+
+        resumes_id = data["resumes_id"]
+        delete_row = (
+            user_supabase.table("resumes")
+            .delete()
+            .eq("resumes_id", resumes_id)
+            .execute()
+        )
+        return {"status": "success"}
+    except Exception as e:
+        print(e)
+        return {"status": "error"}
+
+
+@views.route("/choose_cv", methods=["POST"])
+def choose_cv():
+    try:
+        data = request.get_json()
+        user_supabase = get_user_supabase()
+        if not user_supabase:
+            return redirect(url_for("auth.register"))
+
+        resumes_id = data["resumes_id"]
+        job_id = data["job_id"]
+
+        chosen_cv = (
+            user_supabase.table("job")
+            .update({"CV_id": resumes_id})
+            .eq("job_id", job_id)
+            .execute()
+        )
+        return {"status": "success"}
+    except Exception as e:
+        print(e)
+        return {"status": "error"}
+
+
+@views.route("/choose_cover", methods=["POST"])
+def choose_cover():
+    try:
+        data = request.get_json()
+        user_supabase = get_user_supabase()
+        if not user_supabase:
+            return redirect(url_for("auth.register"))
+
+        resumes_id = data["resumes_id"]
+        job_id = data["job_id"]
+
+        chosen_cover = (
+            user_supabase.table("job")
+            .update({"Cover_id": resumes_id})
+            .eq("job_id", job_id)
+            .execute()
+        )
+        return {"status": "success"}
+    except Exception as e:
+        print(e)
+        return {"status": "error"}
+
+
+@views.route("/unlink_document_cv", methods=["POST"])
+def unlink_document_cv():
+    try:
+        data = request.get_json()
+        user_supabase = get_user_supabase()
+        if not user_supabase:
+            return redirect(url_for("auth.register"))
+
+        job_id = data["job_id"]
+
+        update_row = (
+            user_supabase.table("job")
+            .update({"CV_id": None})
+            .eq("job_id", job_id)
+            .execute()
+        )
+        return {"status": "success"}
+    except Exception as e:
+        print(e)
+        return {"status": "error"}
+
+
+@views.route("/unlink_document_cover", methods=["POST"])
+def unlink_document_cover():
+    try:
+        data = request.get_json()
+        user_supabase = get_user_supabase()
+        if not user_supabase:
+            return redirect(url_for("auth.register"))
+
+        job_id = data["job_id"]
+
+        update_row = (
+            user_supabase.table("job")
+            .update({"Cover_id": None})
+            .eq("job_id", job_id)
+            .execute()
+        )
+        return {"status": "success"}
+    except Exception as e:
+        print(e)
+        return {"status": "error"}
 
 
 @views.route("/settings")

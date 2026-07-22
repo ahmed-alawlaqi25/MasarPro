@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %} Base {% endblock %}</title>
+    <title>{% block title %} Massar {% endblock %}</title>
 
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -27,7 +27,11 @@
                 </button>
                 <a href="/">
                     <div class="home-logo">
-                        <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo">
+                        <img
+                                class="home-logo-image "
+                                src="{{ url_for('static', filename='img/logo.svg') }}"
+                                alt="logo">
+                        <b>مسار</b>
                     </div>
                 </a>
             </div>
@@ -53,10 +57,9 @@
 <section id="hero-section">
     <div class="container hero">
         <div class="hero-content">
-            <h1 class="hero-h1">ابنِ سيرتك الذاتية <br>واحصل على مقابلات عمل أكثر بـ 6 مرات</h1>
-            <p class="hero-p">أنشئ سيرة ذاتية احترافية ومتوافقة مع أنظمة تتبّع المتقدمين (ATS) خلال دقائق باستخدام أداة
-                إنشاء السير الذاتية المجانية من WEBSITE. يمكنك إنشاء عدد غير محدود من السير الذاتية المخصصة لكل وظيفة
-                تتقدم لها.</p>
+            <h1 class="hero-h1">نظّم بحثك الوظيفي <br>ولا تفوّتك فرصة عمل أبداً</h1>
+            <p class="hero-p">تتبّع كل طلباتك الوظيفية في مكان واحد باستخدام متعقب الوظائف المجاني. من أول تقديم
+                حتى عرض العمل، كل شيء أمامك بوضوح حتى تركّز على ما يهم — الحصول على الوظيفة.</p>
             <a class="action-button sign-up" href="/register">أنشئ حسابك الآن! — مجاني %100</a>
         </div>
         <div class="hero-menu">
@@ -83,9 +86,9 @@
                         <path d="M3 5h14M3 10h14M3 15h8" stroke="#378ADD" stroke-width="1.6" stroke-linecap="round"/>
                     </svg>
                 </div>
-                <h3 class="feature-title">تتبع الوظائف</h3>
-                <p class="feature-desc">تقدر تحفظ الوظائف من أي موقع توظيف باستخدام إضافة Teal على المتصفح، عشان توفر
-                    وقتك وتبقى منظم.</p>
+                <h3 class="feature-title">لوحة كانبان وظيفية</h3>
+                <p class="feature-desc">رتّب طلباتك بسحب وإفلات بسيط بين مراحل التقديم — من الاهتمام حتى العرض.
+                    كل وظيفة في مكانها الصح دائماً.</p>
                 <span class="feature-number">01</span>
             </div>
 
@@ -129,7 +132,7 @@
                 <span class="feature-number">04</span>
             </div>
         </div>
-        
+
     </div>
 </section>
 
@@ -198,7 +201,7 @@
         </div>
         <div class="footer-links">
             <div class="footer-link">
-                <a href="https://linkedin.com/in/your-linkedin">
+                <a href="https://www.linkedin.com/in/ahmed-alawlaqi-dev/">
                     LinkedIn
                 </a>
             </div>

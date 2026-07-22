@@ -1,4 +1,104 @@
 {% extends "dashboard.html" %}
 {% block form_content %}
+<div class="container">
+    <h1>المستندات</h1>
+    <div class="job-application">
+        <div class="right-card">
+            <div class="job-info">
+                <h3>السيرة الذاتية</h3>
+                <button class="add-button" value="CV">رفع السيرة</button>
+            </div>
+        </div>
+        <div class="left-card">
+            <div class="job-info">
+                <h3>الخطاب</h3>
+                <button class="add-button" value="Cover">رفع الخطاب</button>
+            </div>
+        </div>
+    </div>
+    <div class="job-application">
+        {% if documents | selectattr('document_type', 'equalto', 'CV') | list | length > 0 %}
+        <div class="right-card">
+            {% for document in documents %}
+            {% if document['document_type'] == 'CV' %}
+
+            <ul>
+                <li class="document-info" data-resumes-id="{{ document['resumes_id'] }}">
+                    {{ document['document_name'] }}
+                    <div>
+                        <a href="{{document['document_url']}}" target="_blank" rel="noopener noreferrer"
+                           class="pdf-button-documents">
+                            فتح
+                            <i class="fa-regular fa-file-pdf"></i>
+                        </a>
+                        <button class="delete-button-documents delete-document">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if documents | selectattr('document_type', 'equalto', 'Cover') | list | length > 0 %}
+        <div class="left-card">
+            {% for document in documents %}
+            {% if document['document_type'] == 'Cover' %}
+            <ul>
+                <li class="document-info" data-resumes-id="{{ document['resumes_id'] }}">
+                    {{ document['document_name'] }}
+                    <div>
+                        <a href="{{document['document_url']}}" target="_blank" rel="noopener noreferrer"
+                           class="pdf-button-documents">
+                            فتح
+                            <i class="fa-regular fa-file-pdf"></i>
+                        </a>
+                        <button class="delete-button-documents delete-document">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<section class="form-start">
+    <div class="document-main-form">
+        <form
+                id="upload-form"
+                class="job-info-form"
+                action="{{ url_for('views.add_document') }}"
+                method="POST"
+                enctype="multipart/form-data">
+            <input type="hidden" id="document_type" name="document_type" value="">
+            <div class="cover-cv-header">
+                <h3 id="form-header">رفع المستند</h3>
+                <button type="button" class="button-form-x">x</button>
+            </div>
+            <div class="upload-container">
+                <label class="upload-btn" for="file-upload">
+                    بحث...
+                    <input id="file-upload" class="file-input" type="file" name="file-upload" hidden
+                           accept="application/pdf" required>
+                </label>
+                <span id="document_name_span">لم يتم اختيار ملف</span>
+                <input type="hidden" id="document_name" name="document_name" value="">
+            </div>
+            <input type="hidden" name="redirect_to" value="{{ request.path }}">
+            <div class="button-container">
+                <input class="submit-button" type="submit" value="قدم">
+                <button type="button" class="cancel-button">إلغاء</button>
+            </div>
+        </form>
+    </div>
+</section>
+
 
 {% endblock %}
+

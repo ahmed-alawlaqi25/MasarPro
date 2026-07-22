@@ -4,24 +4,24 @@
 
 {% for job in jobs %}
 <div class="container">
-    <h1 class="header-application">{{ job['job_title'] }}</h1>
+    <h1 class="header-application"  data-job-id="{{ job['job_id'] }}">{{ job['job_title'] }}</h1>
     <div class="job-application">
         <div class="right-card">
             <div class="job-info">
-                <b>أسم الشركة</b>
+                <b>أسم الشركة :</b>
                 {{ job['company_name'] }}
             </div>
             <div class="job-info">
-                <b>الموقع</b>
+                <b>الموقع:</b>
                 {{ job['city'] }}
             </div>
             <div class="job-info">
-                <b>التاريخ</b>
+                <b>التاريخ :</b>
                 {{ job['published'] }}
 
             </div>
-            <div class="job-info">
-                <b>الرابط</b>
+            <div class="job-info job-info-last">
+                <b>الرابط :</b>
                 <div>
                     <a class="copy-link" href="{{ job['job_url'] }}" onclick="copyLink(event, this)">
                     </a>
@@ -49,20 +49,74 @@
                     </select>
                 </div>
             </div>
+
             <div class="job-info">
                 <div class="job-info-description">
-                    <b class="b-left-card">السيرة الذاتية</b>
+                    <p class="b-left-card">السيرة الذاتية</p>
+                {% if job['CV_id'] == none%}
                     <select class="user-document-cv-letter" id="cvs" name="cvs">
-
+                    {% if documents | selectattr('document_type', 'equalto', 'CV') | list | length > 0 %}
+                    {% for document in documents %}
+                        {% if document['document_type'] == 'CV' %}
+                        <option value="{{document['resumes_id']}}">{{ document['document_name'] }}</option>
+                        {% endif %}
+                    {% endfor %}
+                    {% endif%}
                     </select>
-                    <button class="user-document-cv-letter">رفع السيرة</button>
+                    <button class="user-document-cv-letter add-button" value="CV">رفع السيرة</button>
+                {% endif %}
+
+                {% for document in documents %}
+                {% if job['CV_id'] != none  %}
+                    {% if document['resumes_id'] == job['CV_id'] %}
+                        <p>{{ document['document_name'] }}</p>
+                    <div class="job-application-document-cv-cover">
+                        <a href="{{ document['document_url'] }}" target="_blank" rel="noopener noreferrer"
+                           class="pdf-button-documents">
+                            فتح
+                            <i class="fa-regular fa-file-pdf"></i>
+                        </a>
+                        <button class="delete-button-documents" id="unlink_document_cv" value="{{ job['CV_id'] }}">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                    {% endif%}
+                {% endif %}
+                {% endfor %}
                 </div>
-                <div class="job-info-description">
-                    <b class="b-left-card">خطاب تعريفي</b>
-                    <select class="user-document-cv-letter" id="cover-letters" name="cover-letters">
 
+                <div class="job-info-description">
+                    <p class="b-left-card">خطاب تعريفي</p>
+                    {% if job['Cover_id'] == none %}
+                    <select class="user-document-cv-letter" id="covers" name="covers">
+                    {% if documents | selectattr('document_type', 'equalto', 'Cover') | list | length > 0 %}
+                    {% for document in documents %}
+                        {% if document['document_type'] == 'Cover' %}
+                        <option value="{{document['resumes_id']}}">{{ document['document_name'] }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    {% endif%}
                     </select>
-                    <button class="user-document-cv-letter" >رفع خطاب</button>
+                    <button class="user-document-cv-letter add-button" value="Cover">رفع الخطاب</button>
+                {% endif %}
+
+                {% for document in documents %}
+                {% if job['Cover_id'] != none  %}
+                    {% if document['resumes_id'] == job['Cover_id'] %}
+                        <p>{{ document['document_name'] }}</p>
+                    <div class="job-application-document-cv-cover">
+                        <a href="{{ document['document_url'] }}" target="_blank" rel="noopener noreferrer"
+                           class="pdf-button-documents">
+                            فتح
+                            <i class="fa-regular fa-file-pdf"></i>
+                        </a>
+                        <button class="delete-button-documents" id="unlink_document_cover" value="{{ job['Cover_id'] }}">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                    {% endif%}
+                {% endif %}
+                {% endfor %}
                 </div>
             </div>
             <div class="job-info-description">
@@ -73,6 +127,38 @@
         </div>
     </div>
 </div>
+
+<section class="form-start">
+    <div class="document-main-form">
+        <form
+                id="upload-form"
+                class="job-info-form"
+                action="{{ url_for('views.add_document') }}"
+                method="POST"
+                enctype="multipart/form-data">
+            <input type="hidden" id="document_type" name="document_type" value="">
+            <div class="cover-cv-header">
+                <h3 id="form-header">رفع المستند</h3>
+                <button type="button" class="button-form-x">x</button>
+            </div>
+            <div class="upload-container">
+                <label class="upload-btn" for="file-upload">
+                    بحث...
+                    <input id="file-upload" class="file-input" type="file" name="file-upload" hidden
+                           accept="application/pdf" required>
+                </label>
+                <span id="document_name_span">لم يتم اختيار ملف</span>
+                <input type="hidden" id="document_name" name="document_name" value="">
+            </div>
+            <input type="hidden" name="redirect_to" value="{{ request.path }}">
+            <div class="button-container">
+                <input class="submit-button" type="submit" value="قدم">
+                <button type="button" class="cancel-button">إلغاء</button>
+            </div>
+        </form>
+    </div>
+</section>
+
 <script
         type="text/javascript"
         src="{{ url_for('static', filename='job_card.js') }}"
@@ -80,3 +166,5 @@
 
 {% endfor %}
 {% endblock %}
+
+
