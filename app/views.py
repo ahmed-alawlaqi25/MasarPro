@@ -3,12 +3,17 @@ from supabase import create_client
 import os
 from dotenv import load_dotenv
 import time
+import os
+import resend
 
 load_dotenv()
 
 views = Blueprint("views", __name__)
 supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_API_KEY"))
 admin_supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_SERVICE_ROLE_KEY"))
+main_email = os.getenv("MAIN_EMAIL")
+
+resend.api_key = os.getenv("RESEND_API_KEY")
 
 
 @views.route("/")
@@ -19,8 +24,27 @@ def home():
     return render_template("home.html")
 
 
-@views.route("/contact_us")
+@views.route("/contact_us", methods=["POST", "GET"])
 def contact_us():
+    if request.method == "POST":
+        contact_name = request.form.get("name")
+        contact_email = request.form.get("email")
+        contact_message = request.form.get("message")
+
+        resend.Emails.send({
+            "from": "MasarPro <noreply@masarpro.app>",
+            "to": [main_email],
+            "subject": f"Contact-Us Form - {contact_name}",
+            "html": f"""
+                <h2>New Contact Form</h2>
+                <p><strong>Name:</strong> {contact_name}</p>
+                <p><strong>Email:</strong> {contact_email}</p>
+                <p><strong>Message:</strong></p>
+                <p>{contact_message}</p>
+            """
+        })
+
+        return redirect(url_for("views.contact_us"))
     return render_template("contact_us.html")
 
 
