@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash, Response
 from supabase import create_client
 import os
 from dotenv import load_dotenv
@@ -368,3 +368,40 @@ def delete_user():
 @views.route("/dashboard", )
 def dashboard():
     return render_template("dashboard.html")
+
+
+@views.route("/sitemap.xml")
+def sitemap():
+    pages = [
+        url_for("views.home", _external=True),
+        url_for("auth.register", _external=True),
+        url_for("views.dashboard", _external=True),
+        url_for("views.contact_us", _external=True),
+
+    ]
+
+    xml = ['<?xml version="1.0" encoding="UTF-8"?>']
+    xml.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+
+    for page in pages:
+        xml.append(f"""
+        <url>
+            <loc>{page}</loc>
+        </url>
+        """)
+
+    xml.append("</urlset>")
+
+    return Response("\n".join(xml), mimetype="application/xml")
+
+
+@views.route("/robots.txt")
+def robots():
+    return Response(
+        """User-agent: *
+Allow: /
+
+Sitemap: https://masarpro.app/sitemap.xml
+""",
+        mimetype="text/plain",
+    )
