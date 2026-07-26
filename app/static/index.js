@@ -44,6 +44,12 @@ window.addEventListener("scroll", () => {
 
 const trackerForm = document.querySelector(".form-start");
 
+trackerForm.addEventListener("click", (e) => {
+    if (e.target === trackerForm) {
+        trackerForm.style.display = "none";
+    }
+});
+
 document.querySelector(".button-form-x")
     .addEventListener("click", () => {
         trackerForm.style.display = "none";

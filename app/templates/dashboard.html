@@ -30,7 +30,7 @@
         <div class="nav-links">
             <div class="nav-item {% if request.endpoint == 'views.tracker' %}active{% endif %}">
                 <a class="links" href="{{ url_for('views.tracker') }}">
-                    متعقب الوظيفة
+                    مسار الوظيفة
                     <i class="fa-brands fa-trello"></i>
                 </a>
             </div>
@@ -61,7 +61,7 @@
     <div class="nav-overlay">
         <div class="nav-overlay-items">
             <div class="nav-item {% if request.endpoint == 'views.tracker' %}active{% endif %}">
-                <a class="links" href="{{ url_for('views.tracker') }}">تعقب الوظيف</a>
+                <a class="links" href="{{ url_for('views.tracker') }}">مسار الوظيف</a>
                 <i class="fa-brands fa-trello"></i>
             </div>
             <div class="nav-item {% if request.endpoint == 'views.resume_review' %}active{% endif %}">

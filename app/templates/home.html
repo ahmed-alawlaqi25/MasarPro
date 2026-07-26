@@ -19,48 +19,50 @@
 <!-- ========================= header start ========================= -->
 {% block content %}
 <header>
-    <div class="navbar">
-        <div class="logo">
-            <button class="toggler" type="button" id="menu-btn">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <a href="/">
-                <div class="home-logo">
-                    <img
-                            class="home-logo-image "
-                            src="{{ url_for('static', filename='img/logo.svg') }}"
-                            alt="logo">
-                    <b>مسار</b>
-                </div>
-            </a>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <button class="toggler" type="button" id="menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <a href="/">
+                    <div class="home-logo">
+                        <img
+                                class="home-logo-image "
+                                src="{{ url_for('static', filename='img/logo.svg') }}"
+                                alt="logo">
+                        <b>مسار</b>
+                    </div>
+                </a>
+
+            </div>
+
+
+            <div class="nav-links">
+                <li class="links"><a href="#features-job-tracker">المسار الوظيفي</a></li>
+                <li class="links"><a href="#">تقييم السيرة الذاتية</a></li>
+            </div>
+            <h3>MasarPro</h3>
+
+            <div class="action-buttons">
+                <a class="action-button header-button" href="/register">تسجيل دخول</a>
+            </div>
+
+
+            <div class="logo-navbar-phone">
+                <img
+                        class="home-logo-image-phone "
+                        src="{{ url_for('static', filename='img/logo.svg') }}"
+                        alt="logo">
+            </div>
 
         </div>
-
-
-        <div class="nav-links">
-            <li class="links"><a href="#features-job-tracker">المسار الوظيفي</a></li>
-            <li class="links"><a href="#">تقييم السيرة الذاتية</a></li>
-        </div>
-        <h3>MasarPro</h3>
-
-        <div class="action-buttons">
-            <a class="action-button header-button" href="/register">تسجيل دخول</a>
-        </div>
-
-
-        <div class="logo-navbar-phone">
-            <img
-                    class="home-logo-image-phone "
-                    src="{{ url_for('static', filename='img/logo.svg') }}"
-                    alt="logo">
-        </div>
-
-    </div>
-    <div class="nav-overlay">
-        <div class="nav-overlay-items ">
-            <li class="links"><a href="#features-job-tracker">المسار الوظيفي</a></li>
-            <li class="links"><a href="#">تقييم السيرة الذاتية</a></li>
-            <li class="action-button login overlay-button "><a id="nav-logo" href="/register">تسجيل دخول</a></li>
+        <div class="nav-overlay">
+            <div class="nav-overlay-items ">
+                <li class="links"><a href="#features-job-tracker">المسار الوظيفي</a></li>
+                <li class="links"><a href="#">تقييم السيرة الذاتية</a></li>
+                <li class="action-button login overlay-button "><a id="nav-logo" href="/register">تسجيل دخول</a></li>
+            </div>
         </div>
     </div>
 </header>
@@ -84,6 +86,7 @@
                  alt="hero-image">
         </div>
     </div>
+
 </section>
 
 <!-- ========================= features-section start ========================= -->
@@ -204,7 +207,7 @@
     <div class="footer-container">
 
         <div class="footer-brand">
-            <h2>متتبع الوظائف</h2>
+            <h2>مسارك الوظيفي</h2>
 
             <p>
                 نظّم طلباتك الوظيفية بسهولة، تابع كل خطوة،

@@ -12,7 +12,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     font-family: "Noto Sans Arabic", sans-serif;
-    background-color: #0F1117;
+    background-color: #0D0F1A;
 }
 
 .callback {
@@ -115,7 +115,7 @@ small {
 /*HEADER*/
 
 header {
-    background-color: #1A1D27;
+    background-color: #111827;
     border-bottom: 1px solid #2A2D3A;
     align-items: center;
     position: sticky;
@@ -138,12 +138,8 @@ header {
 }
 
 .navbar h3 {
-    color: rgba(249, 247, 247, 0.55);
-
-}
-
-.navbar h3:hover {
     color: white;
+
 }
 
 .logo {
@@ -248,7 +244,7 @@ header {
     position: fixed;
     width: 100%;
     height: 100vh;
-    background: #0F1117;
+    background: #0D0F1A;
     display: none;
 }
 
@@ -260,8 +256,6 @@ header {
     padding-top: 1.5rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     color: #6B7280;
 }
 
@@ -334,7 +328,7 @@ header {
 }
 
 .job-card {
-    background: #1A1D27;
+    background: #111827;
     border: 1px solid #2A2D3A;
     border-radius: 0.25rem;
     max-width: 21rem;
@@ -379,8 +373,8 @@ header {
     max-height: 8rem;
     width: 100%;
     height: 100%;
-    background-color: #121318;
-    border: 1px solid #23242a;
+    background-color: #111827;
+    border: 1px solid #777887;
     border-radius: 0.5rem;
     display: flex;
     direction: rtl;
@@ -399,7 +393,7 @@ header {
 
 .sidebar-spacer {
     width: 3rem;
-    border-left: 1px dotted #34353c;
+    border-left: 1px dotted #777887;
     height: 100%;
 }
 
@@ -436,22 +430,26 @@ header {
     align-items: center;
     z-index: 1000;
     color: #565861;
+
 }
 
 
 .job-info-form {
     display: flex;
     flex-direction: column;
-    background-color: #13161f;
+    background-color: #111827;
     border-radius: 8px;
-    padding: 1.5rem;
-    color: white;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    color: #94a3b8;
     gap: 1rem;
+
 }
 
 
 .tracker-form {
-    width: min(900px, 90vw);
+    width: min(900px, 92vw);
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .job-info {
@@ -480,7 +478,8 @@ header {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    background-color: #1e212a;
+    background-color: #0D0F1A;
+    border-radius: 14px;
 }
 
 .job-info-logo-h3 {
@@ -520,7 +519,7 @@ header {
     justify-content: center;
     align-items: center;
     border-radius: 8px;
-    background-color: #181f29;
+    background-color: #0D0F1A;
     border: 0.5px solid rgba(0, 173, 181, 0.3);
 }
 
@@ -551,7 +550,7 @@ header {
     grid-template-columns: 1fr 1fr;
     color: #94a3b8;
     padding: 1rem;
-    background-color: #1e212a;
+    background-color: #0D0F1A;
     border-radius: 8px;
 }
 
@@ -860,4 +859,6 @@ input[type="file"]:invalid {
         justify-content: space-between;
         align-items: center;
     }
+
+
 }
