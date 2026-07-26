@@ -50,13 +50,13 @@ def contact_us():
 
 @views.route("/tracker")
 def tracker():
-    # user_id = session["user_id"]
-    # user_supabase = get_user_supabase()
-    # if not user_supabase:
-    #     return redirect(url_for("auth.register"))
-    # job_info_response = user_supabase.table("job").select("*").eq("user_id", user_id).execute()
-    # jobs = job_info_response.data
-    return render_template("tracker.html", )
+    user_id = session["user_id"]
+    user_supabase = get_user_supabase()
+    if not user_supabase:
+        return redirect(url_for("auth.register"))
+    job_info_response = user_supabase.table("job").select("*").eq("user_id", user_id).execute()
+    jobs = job_info_response.data
+    return render_template("tracker.html", jobs=jobs)
 
 
 @views.route("/add-job", methods=["POST"])
