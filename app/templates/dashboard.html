@@ -14,67 +14,71 @@
 <body>
 <!-- ========================= Navbar here ========================= -->
 <header>
-    <div class="">
-        <div class="navbar">
-            <div class="logo">
-                <button class="toggler" type="button" id="menu-btn">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <div class="home-logo">
-                    <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo">
-                </div>
+    <div class="navbar">
+        <div class="logo">
+            <button class="toggler" type="button" id="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <a href="#" class="home-logo">
+                <img class="home-logo-image" src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo">
+            </a>
+        </div>
+        <h3>MasarPro</h3>
+        <a href="#" class="logo-navbar-phone">
+            <img class="home-logo-image" src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo">
+        </a>
+        <div class="nav-links">
+            <div class="nav-item {% if request.endpoint == 'views.tracker' %}active{% endif %}">
+                <a class="links" href="{{ url_for('views.tracker') }}">
+                    متعقب الوظيفة
+                    <i class="fa-brands fa-trello"></i>
+                </a>
             </div>
-            <div class="nav-links">
-                <div class="nav-item {% if request.endpoint == 'views.tracker' %}active{% endif %}">
-                    <a class="links" href="{{ url_for('views.tracker') }}">
-                        متعقب الوظيفة
-                        <i class="fa-brands fa-trello"></i>
-                    </a>
-                </div>
-                <div class="nav-item {% if request.endpoint == 'views.resume_review' %}active{% endif %}">
-                    <a class="links" href="{{ url_for('views.resume_review') }}">
-                        تقييم السيرة
-                        <i class="fa-solid fa-chart-line"></i>
-                    </a>
-                </div>
-                <div class="nav-item {% if request.endpoint == 'views.document' %}active{% endif %}">
-                    <a class="links" href="{{ url_for('views.document') }}">المستندات
-                        <i class="fa-solid fa-folder"></i>
-                    </a>
+            <div class="nav-item {% if request.endpoint == 'views.resume_review' %}active{% endif %}">
+                <a class="links" href="{{ url_for('views.resume_review') }}">
+                    تقييم السيرة
+                    <i class="fa-solid fa-chart-line"></i>
+                </a>
+            </div>
+            <div class="nav-item {% if request.endpoint == 'views.document' %}active{% endif %}">
+                <a class="links" href="{{ url_for('views.document') }}">المستندات
+                    <i class="fa-solid fa-folder"></i>
+                </a>
 
-                </div>
-                <div class="nav-item {% if request.endpoint == 'views.settings' %}active{% endif %}">
-                    <a class="links" href="{{ url_for('views.settings') }}">الإعدادات
-                        <i class="fa-solid fa-gear"></i>
-                    </a>
+            </div>
+            <div class="nav-item {% if request.endpoint == 'views.settings' %}active{% endif %}">
+                <a class="links" href="{{ url_for('views.settings') }}">الإعدادات
+                    <i class="fa-solid fa-gear"></i>
+                </a>
 
-                </div>
-                <div class="nav-item logout-btn">
-                    <a class="links" href="{{ url_for('auth.logout') }}">
-                        <i class="fa-solid fa-arrow-right-from-bracket  logout "></i></a>
-                </div>
+            </div>
+            <div class="nav-item logout-btn">
+                <a class="links" href="{{ url_for('auth.logout') }}">
+                    <i class="fa-solid fa-arrow-right-from-bracket  logout "></i></a>
             </div>
         </div>
-        <div class="nav-overlay">
-            <div class="nav-overlay-items">
-                <div class="nav-item {% if request.endpoint == 'views.tracker' %}active{% endif %}">
-                    <a class="links" href="{{ url_for('views.tracker') }}">تعقب الوظيف</a>
-                </div>
-                <div class="nav-item {% if request.endpoint == 'views.resume_review' %}active{% endif %}">
-                    <a class="links" href="{{ url_for('views.resume_review') }}">تقييم السيرة الذاتية</a>
-                </div>
-                <div class="nav-item {% if request.endpoint == 'views.document' %}active{% endif %}">
-                    <a class="links" href="{{ url_for('views.document') }}">المستندات</a>
-                    <i class="fa-solid fa-folder links_emojy"></i>
-                </div>
-                <div class="nav-item {% if request.endpoint == 'views.settings' %}active{% endif %}">
-                    <a class="links" href="{{ url_for('views.settings') }}">الإعدادات</a>
-                    <i class="fa-solid fa-gear "></i>
-                </div>
-                <div class="nav-item logout-btn">
-                    <a class="links" href="{{ url_for('auth.logout') }}">
-                        <i class="fa-solid fa-arrow-right-from-bracket link_emojy logout "></i></a>
-                </div>
+    </div>
+    <div class="nav-overlay">
+        <div class="nav-overlay-items">
+            <div class="nav-item {% if request.endpoint == 'views.tracker' %}active{% endif %}">
+                <a class="links" href="{{ url_for('views.tracker') }}">تعقب الوظيف</a>
+                <i class="fa-brands fa-trello"></i>
+            </div>
+            <div class="nav-item {% if request.endpoint == 'views.resume_review' %}active{% endif %}">
+                <a class="links" href="{{ url_for('views.resume_review') }}">تقييم السيرة الذاتية</a>
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div class="nav-item {% if request.endpoint == 'views.document' %}active{% endif %}">
+                <a class="links" href="{{ url_for('views.document') }}">المستندات</a>
+                <i class="fa-solid fa-folder links_emojy"></i>
+            </div>
+            <div class="nav-item {% if request.endpoint == 'views.settings' %}active{% endif %}">
+                <a class="links" href="{{ url_for('views.settings') }}">الإعدادات</a>
+                <i class="fa-solid fa-gear "></i>
+            </div>
+            <div class="nav-item logout-btn">
+                <a class="links" href="{{ url_for('auth.logout') }}">
+                    <i class="fa-solid fa-arrow-right-from-bracket link_emojy logout "></i></a>
             </div>
         </div>
     </div>

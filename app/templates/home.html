@@ -19,36 +19,48 @@
 <!-- ========================= header start ========================= -->
 {% block content %}
 <header>
-    <div class="container">
-        <div class="navbar">
-            <div class="logo">
-                <button class="toggler" type="button" id="menu-btn">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <a href="/">
-                    <div class="home-logo">
-                        <img
-                                class="home-logo-image "
-                                src="{{ url_for('static', filename='img/logo.svg') }}"
-                                alt="logo">
-                        <b>مسار</b>
-                    </div>
-                </a>
-            </div>
-            <div class="nav-links">
-                <li class="links"><a href="#features-job-tracker">تعقب الوظيف</a></li>
-                <li class="links"><a href="#">تقييم السيرة الذاتية</a></li>
-            </div>
-            <div class="action-buttons">
-                <a class="action-button header-button" href="/register">تسجيل دخول</a>
-            </div>
+    <div class="navbar">
+        <div class="logo">
+            <button class="toggler" type="button" id="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <a href="/">
+                <div class="home-logo">
+                    <img
+                            class="home-logo-image "
+                            src="{{ url_for('static', filename='img/logo.svg') }}"
+                            alt="logo">
+                    <b>مسار</b>
+                </div>
+            </a>
+
         </div>
-        <div class="nav-overlay">
-            <div class="nav-overlay-items ">
-                <li class="links"><a href="#">تعقب الوظيف</a></li>
-                <li class="links"><a href="#">تقييم السيرة الذاتية</a></li>
-                <li class="action-button login overlay-button "><a id="nav-logo" href="/register">تسجيل دخول</a></li>
-            </div>
+
+
+        <div class="nav-links">
+            <li class="links"><a href="#features-job-tracker">المسار الوظيفي</a></li>
+            <li class="links"><a href="#">تقييم السيرة الذاتية</a></li>
+        </div>
+        <h3>MasarPro</h3>
+
+        <div class="action-buttons">
+            <a class="action-button header-button" href="/register">تسجيل دخول</a>
+        </div>
+
+
+        <div class="logo-navbar-phone">
+            <img
+                    class="home-logo-image-phone "
+                    src="{{ url_for('static', filename='img/logo.svg') }}"
+                    alt="logo">
+        </div>
+
+    </div>
+    <div class="nav-overlay">
+        <div class="nav-overlay-items ">
+            <li class="links"><a href="#features-job-tracker">المسار الوظيفي</a></li>
+            <li class="links"><a href="#">تقييم السيرة الذاتية</a></li>
+            <li class="action-button login overlay-button "><a id="nav-logo" href="/register">تسجيل دخول</a></li>
         </div>
     </div>
 </header>
@@ -58,12 +70,12 @@
     <div class="container hero">
         <div class="hero-content">
             <h1 class="hero-h1">نظّم بحثك الوظيفي <br>ولا تفوّتك فرصة عمل أبداً</h1>
-            <p class="hero-p">تتبّع كل طلباتك الوظيفية في مكان واحد باستخدام متعقب الوظائف المجاني. من أول تقديم
+            <p class="hero-p">تتبّع كل طلباتك الوظيفية في مكان واحد باستخدام مسار الوظائف المجاني. من أول تقديم
                 حتى عرض العمل، كل شيء أمامك بوضوح حتى تركّز على ما يهم — الحصول على الوظيفة.</p>
             <a class="action-button sign-up" href="/register">أنشئ حسابك الآن! — مجاني %100</a>
         </div>
         <div class="hero-menu">
-            <a class="hero-menu-items" href="#">تعقب الوظيفك</a>
+            <a class="hero-menu-items" href="#">المسار الوظيفي</a>
             <a class="hero-menu-items" href="#">تقييم السيرة الذاتية</a>
         </div>
 
@@ -77,7 +89,7 @@
 <!-- ========================= features-section start ========================= -->
 <section id="features-job-tracker">
     <div class="container section-wrapper">
-        <h2 class="section-heading">مميزات <span>متتبع الوظائف</span></h2>
+        <h2 class="section-heading">مميزات <span>مسار الوظائف</span></h2>
         <p class="section-sub">أداة متكاملة لتتبع فرصك الوظيفية في مكان واحد — بسيطة، سريعة، ومنظمة.</p>
         <div class="features-grid">
             <div class="feature-card">
@@ -147,7 +159,7 @@
                     <span class="action-step-number">01</span>
                     <div>
                         <span class="action-list-span">سجّل حسابًا</span>
-                        <p>أنشئ حسابك على JobTracker مجانًا في ثوانٍ.</p>
+                        <p>أنشئ حسابك على MasarPro مجانًا في ثوانٍ.</p>
                     </div>
                 </li>
                 <li class="action-list">
@@ -215,7 +227,7 @@
 
     <div class="footer-bottom">
         <p>
-            © 2026 جميع الحقوق محفوظة - متتبع الوظائف
+            © 2026 جميع الحقوق محفوظة - مسار برو
         </p>
     </div>
 </footer>

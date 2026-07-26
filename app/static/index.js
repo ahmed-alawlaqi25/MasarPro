@@ -1,23 +1,44 @@
 const btn = document.getElementById("menu-btn");
 const icon = btn.querySelector("i");
 const overlay = document.querySelector(".nav-overlay");
+const navbar = document.querySelector(".navbar");
+let lastScrollY = window.scrollY;
 
+// Toggle menu on click
 btn.addEventListener("click", () => {
-    // toggle icon
     icon.classList.toggle("fa-bars");
     icon.classList.toggle("fa-xmark");
-
-    // toggle menu
     overlay.classList.toggle("active");
 });
 
+// Reset menu on desktop resize
 window.addEventListener("resize", () => {
     if (window.innerWidth > 768) {
         overlay.classList.remove("active");
-
         icon.classList.remove("fa-xmark");
         icon.classList.add("fa-bars");
     }
+});
+
+// Scroll logic: Hides navbar on scroll down, shows on scroll up,
+// AND completely closes the overlay on ANY scroll.
+window.addEventListener("scroll", () => {
+    if (window.innerWidth <= 1024) {
+
+        // 1. If they scroll at all, force-close the overlay and reset the 'X' icon to hamburger
+        if (overlay.classList.contains("active")) {
+            overlay.classList.remove("active");
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+        }
+
+        // 2. Handle navbar hiding/showing
+        if (window.scrollY > lastScrollY && window.scrollY > 60) {
+            // Scrolling down -> Hide navbar
+            navbar.classList.add("nav-hidden");
+        }
+    }
+    lastScrollY = window.scrollY;
 });
 
 
@@ -201,6 +222,7 @@ if (unlink_document_cover) {
             });
     });
 }
+
 
 
 

@@ -55,9 +55,8 @@ a {
 /*------------------------------------Header-section-----------------------------------------------------*/
 
 header {
-    display: flex;
     background-color: #0D0F1A;
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid #2A2D3A;
     align-items: center;
     position: sticky;
     top: 0;
@@ -78,8 +77,14 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-
+    padding: 0.3rem;
 }
+
+.navbar h3 {
+    color: white;
+    margin-right: 8rem;
+}
+
 
 .logo {
     display: flex;
@@ -195,6 +200,11 @@ header {
     display: block;
     width: 100%;
     height: 100%;
+    color: black;
+}
+
+#nav-logo:hover {
+    color: #F9F7F7;
 }
 
 .overlay-button {
@@ -269,9 +279,13 @@ header {
     gap: 1rem;
 }
 
+.hero-menu-items {
+    color: rgba(249, 247, 247, 0.55);
+}
 
 .hero-menu-items:hover {
     transform: scale(1.05);
+    color: #F9F7F7;
 }
 
 .hero-images {
@@ -568,6 +582,7 @@ header {
     color: white;
 }
 
+
 .auth-logo {
     display: flex;
     gap: 0.2rem;
@@ -612,7 +627,7 @@ header {
     background: rgba(0, 173, 181, 0.06);
     border-radius: 10px;
     border: 0.5px solid rgba(0, 173, 181, 0.12);
-    flex-direction: row-reverse;
+
 }
 
 .auth-feat i {
@@ -742,6 +757,10 @@ header {
     outline: none;
     transition: border-color 0.2s;
     box-sizing: border-box;
+}
+
+.logo-navbar-phone {
+    display: none;
 }
 
 .email-style {
@@ -881,10 +900,27 @@ header {
 }
 
 
-@media (max-width: 874px) {
+@media (max-width: 1024px) {
     .nav-links {
         display: none;
     }
+
+    .navbar {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    .logo-navbar-phone {
+        width: 100px;
+        height: 64px;
+        display: flex;
+        gap: 0.2rem;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+
 
     .header-button {
         display: none;
@@ -934,18 +970,39 @@ header {
         display: flex;
         align-items: center;
         justify-content: center;
+        background-color: #111827;
 
     }
 
     .auth-card-1 {
-        width: 80%;
+        width: 60%;
         height: 80vh;
-        border-radius: 15px;
+        background: #161d2d;
+        border: 1px solid rgba(0, 173, 181, 0.18);
+        border-radius: 28px;
+
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+        0 0 30px rgba(0, 173, 181, 0.08),
+        0 20px 60px rgba(0, 0, 0, 0.45);
+    }
+
+
+    .logo-color {
+        width: 6rem;
+    }
+
+    .home-logo {
+        display: none;
+    }
+
+    .home-logo-image-phone {
+        width: 3rem;
+        height: 3rem;
     }
 }
 
 
-@media (min-width: 875px) {
+@media (min-width: 1024px) {
     .toggler {
         display: none;
     }
@@ -965,6 +1022,13 @@ header {
     .auth-btn {
         width: 50%;
     }
+
+    .navbar h3 {
+        display: none;
+    }
+}
+
+@media (max-width: 844px) {
 
 }
 
