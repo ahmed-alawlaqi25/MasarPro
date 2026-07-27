@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash, Response
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash, Response, abort
 from supabase import create_client
 import os
 from dotenv import load_dotenv
@@ -367,6 +367,8 @@ def delete_user():
 
 @views.route("/dashboard", )
 def dashboard():
+    if "user_id" not in session:
+        abort(403)
     return render_template("dashboard.html")
 
 
