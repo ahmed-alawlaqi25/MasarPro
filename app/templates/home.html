@@ -3,40 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon"
-          href="{{ url_for('static', filename='favicon.ico') }}"
-          sizes="any">
 
-    <link rel="icon"
-          type="image/svg+xml"
-          href="{{ url_for('static', filename='favicon.svg') }}">
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+
+    <!-- Title & Description -->
+    <title>{% block title %}MasarPro | مسار برو - منصة تتبع طلبات التوظيف{% endblock %}</title>
+    <meta name="description"
+          content="مسار برو يساعدك على تنظيم وتتبع طلبات التوظيف، إدارة السير الذاتية، خطابات التغطية، المقابلات، والعروض الوظيفية في مكان واحد، لتسهيل رحلة البحث عن وظيفة.">
+    <meta name="author" content="MasarPro">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://masarpro.app/">
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp, etc.) -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Masar">
-    <meta property="og:title" content="مسار | منصة لتنظيم وتتبع طلبات التوظيف">
+    <meta property="og:site_name" content="MasarPro">
+    <meta property="og:title" content="MasarPro | مسار برو - منصة تتبع طلبات التوظيف">
     <meta property="og:description"
           content="تتبع طلبات التوظيف والسيرة الذاتية والمقابلات في مكان واحد.">
-
     <meta property="og:url" content="https://masarpro.app/">
+    <meta property="og:image" content="https://masarpro.app/static/img/og-image.png">
 
-    <meta property="og:image"
-          content="https://masarpro.app/static/img/og-image.png">
-
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-
-    <meta name="twitter:title"
-          content="مسار | منصة لتنظيم وتتبع طلبات التوظيف">
-
+    <meta name="twitter:title" content="MasarPro | مسار برو - منصة تتبع طلبات التوظيف">
     <meta name="twitter:description"
-          content="نظم طلبات التوظيف والمقابلات والسير الذاتية في مكان واحد.">
+          content="تتبع طلبات التوظيف والسيرة الذاتية والمقابلات في مكان واحد.">
+    <meta name="twitter:image" content="https://masarpro.app/static/img/og-image.png">
 
-    <meta name="twitter:image"
-          content="https://masarpro.app/static/img/og-image.png">
-
+    <!-- Structured Data -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": "Masar",
+            "name": "MasarPro",
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Web",
             "url": "https://masarpro.app",
@@ -44,23 +45,6 @@
             "image": "https://masarpro.app/static/img/og-image.png"
         }
     </script>
-
-    <title>{% block title %}مسار | منصة لتنظيم وتتبع طلبات التوظيف والسيرة الذاتية {% endblock %}</title>
-    <meta name="description"
-          content="مسار برو يساعدك على تنظيم وتتبع طلبات التوظيف، إدارة السير الذاتية، خطابات التغطية، المقابلات، والعروض الوظيفية في مكان واحد، لتسهيل رحلة البحث عن وظيفة.">
-
-    <meta name="robots" content="index, follow">
-
-    <link rel="canonical" href="https://masarpro.app/">
-
-    <meta name="author" content="MasarPro">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="مسار برو | منصة لتنظيم وتتبع طلبات التوظيف">
-    <meta property="og:description"
-          content="نظم طلبات التوظيف، السير الذاتية، المقابلات، والعروض الوظيفية في لوحة تحكم واحدة.">
-    <meta property="og:url" content="https://masarpro.app/">
-    <meta property="og:site_name" content="MasarPro">
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
           integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
