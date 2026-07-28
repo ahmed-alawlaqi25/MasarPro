@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash, Response, abort
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash, Response, abort, jsonify
+from .extensions import limiter
 from supabase import create_client
 import os
 from dotenv import load_dotenv
@@ -24,8 +25,12 @@ def home():
     return render_template("home.html")
 
 
-@views.route("/contact_us", methods=["POST", "GET"])
+@views.route('/contact', methods=['POST'])
+@limiter.limit("3 per hour")
 def contact_us():
+    if request.form.get('website'):  # honeypot triggered
+        return jsonify({'status': 'ok'}), 200
+
     if request.method == "POST":
         contact_name = request.form.get("name")
         contact_email = request.form.get("email")
