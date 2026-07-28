@@ -21,7 +21,7 @@
             <button class="toggler" type="button" id="menu-btn">
                 <i class="fa-solid fa-bars"></i>
             </button>
-            <a href="#" class="home-logo">
+            <a href="{{ url_for('views.home') }}" class="home-logo">
                 <img class="home-logo-image" src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo">
             </a>
         </div>
