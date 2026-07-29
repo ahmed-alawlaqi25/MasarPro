@@ -12,6 +12,9 @@ auth = Blueprint("auth", __name__)
 
 @auth.route("/register", methods=["GET", "POST"])
 def register():
+    if "user_id" in session:
+        return redirect(url_for("views.tracker"))
+
     if request.method == "POST":
         register_data = request.form
         email = register_data.get("email")

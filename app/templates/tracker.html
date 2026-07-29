@@ -3,11 +3,13 @@
 {% block form_content %}
 
 <main class="container">
+    <button type="submit" class="add-button"><b>اضافة وظيفة +</b></button>
     <div class="tracker">
+
         <div class="tracker-items wishlist" id="Wishlist">
             <div class="column-header wishlist">
                 <h3>قائمة الأمنيات</h3>
-                <button type="submit" class="add-button">+</button>
+
             </div>
             {% for job in jobs %}
             {% if job['status'] == 'Wishlist' %}

@@ -19,9 +19,6 @@ resend.api_key = os.getenv("RESEND_API_KEY")
 
 @views.route("/")
 def home():
-    if "user_id" in session:
-        return redirect(url_for("views.tracker"))
-
     return render_template("home.html")
 
 
