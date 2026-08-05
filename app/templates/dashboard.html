@@ -25,7 +25,7 @@
                 <img class="home-logo-image" src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo">
             </a>
         </div>
-        <h3>MasarPro</h3>
+        <h3>Masar<span class="teal-color">Pro</span></h3>
         <a href="#" class="logo-navbar-phone">
             <img class="home-logo-image" src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo">
         </a>
@@ -88,6 +88,8 @@
 <!-- ========================= main app here ========================= -->
 {% block form_content %}
 {% endblock %}
+
+
 <script
         type="text/javascript"
         src="{{ url_for('static', filename='index.js') }}"

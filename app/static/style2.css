@@ -289,6 +289,10 @@ header {
     justify-content: space-between;
 }
 
+.column-header h3 {
+    margin-bottom: 0.3rem;
+}
+
 .wishlist .column-header {
     border-bottom: 2px solid #6B7280;
 
@@ -410,7 +414,7 @@ header {
 }
 
 .delete-content h3 {
-    color: #8a8d98;
+    color: #fdfcfd;
     font-size: 1.1rem;
     margin: 0 0 0.4rem 0;
     font-weight: bold;
@@ -492,7 +496,7 @@ header {
 
 .user-document-cv-letter {
     padding: 0.5rem;
-    background-color: #13151f;
+    background-color: #101827;
     color: #94a3b8;
     border: 0.1px solid rgba(0, 173, 181, 0.3);
     border-radius: 0.2rem;
@@ -595,6 +599,11 @@ header {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #fdfcfd;
+}
+
+.job-title h3 {
+    font-size: 0.7rem;
 }
 
 .company-name {
@@ -605,9 +614,275 @@ header {
     -webkit-line-clamp: 2; /* Only 2 lines */
     overflow: hidden;
     line-height: 1.3;
+    color: #9ba9be;
 }
 
 /*application-page*/
+.application-page {
+    width: 100%;
+    padding: 35px;
+    display: flex;
+    justify-content: center;
+}
+
+.application-container {
+    width: 100%;
+    max-width: 1700px;
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 30px;
+    padding: 35px;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, .45);
+}
+
+.application-header {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.application-header h3 {
+    color: white;
+}
+
+.application-badge {
+    background: #0d5c61;
+    color: #35ece5;
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 10rem;
+}
+
+.application-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: start;
+
+
+}
+
+.application-base {
+    color: #bac3d4;
+    background-color: #1a2536;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.right-application-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.company-info-card {
+    display: grid;
+    grid-template-columns: 1fr 100px;
+}
+
+.left-application-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.application-document {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 14px;
+    padding: 0.5rem;
+    background-color: #101827;
+}
+
+.company-info {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    align-items: center;
+
+    gap: 0.3rem;
+}
+
+.company-info p {
+    border-left: 1px dotted #222b3e;
+    width: 50%;
+}
+
+.company-info b {
+    color: white;
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.company-logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #101827;
+    color: #25E3D3;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-top: 1rem;
+}
+
+.card {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+}
+
+.teal-color {
+    color: #25E3D3;
+}
+
+.application-description {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.application-container b {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.status-select {
+    width: 100%;
+
+    padding: 14px 18px;
+
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    background: #101827;
+    color: #fff;
+
+    outline: none;
+}
+
+hr {
+    border: none;
+    height: 1px;
+
+
+    background: rgba(255, 255, 255, .08);
+}
+
+
+.file-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 16px 18px;
+
+    background: #101827;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 12px;
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.pdf-icon {
+    font-size: 34px;
+    color: #ff5b5b;
+}
+
+.file-info h4 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.file-info span {
+    color: #9da9bb;
+    font-size: .9rem;
+}
+
+.file-actions {
+    display: flex;
+    gap: 12px;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.secondary-btn {
+    background: transparent;
+    color: #d7dde8;
+
+    border: 1px solid rgba(255, 255, 255, .18);
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, .05);
+}
+
+.primary-btn {
+    background: transparent;
+
+    color: #d7dde8;
+
+    border: 1px solid red;
+}
+
+.primary-btn:hover {
+    background: rgba(255, 255, 255, .05);
+}
+
+textarea {
+    width: 100%;
+    min-height: 110px;
+
+    resize: vertical;
+
+    padding: 16px;
+
+    border-radius: 12px;
+
+    background: #101827;
+
+    color: #fff;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    outline: none;
+}
+
+textarea::placeholder {
+    color: #9da9bb;
+}
+
+/*documents*/
 .container {
     width: 100%;
     padding-top: 2rem;
@@ -618,8 +893,8 @@ header {
 
 
 .header-application {
-    padding: 1rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 .job-application {
@@ -666,14 +941,6 @@ header {
 .job-application-document-cv-cover {
     display: flex;
 }
-
-
-/* Optional: Make the input border turn red when invalid */
-input[type="file"]:invalid {
-    /* Styles can go here if you want to highlight the input itself */
-}
-
-/*documents*/
 
 .cover-cv-header {
     display: flex;
@@ -735,11 +1002,12 @@ input[type="file"]:invalid {
 }
 
 .document-info {
+    color: #fdfcfd;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
-    border-bottom: 1px dotted #777887;
+    border-bottom: 1px solid #111827;
 }
 
 .delete-button-documents {
@@ -837,6 +1105,13 @@ input[type="file"]:invalid {
         height: 100%;
     }
 
+    .application-grid {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+
 }
 
 @media (min-width: 1024px) {
@@ -869,3 +1144,4 @@ input[type="file"]:invalid {
 
 
 }
+

@@ -44,8 +44,7 @@ def contact():
                 <p>{contact_message}</p>
             """
         })
-
-        return redirect(url_for("views.contact"))
+        return redirect(url_for("views.home"))
     return render_template("contact.html")
 
 
@@ -368,8 +367,6 @@ def delete_user():
 
 @views.route("/dashboard", )
 def dashboard():
-    if "user_id" not in session:
-        abort(403)
     return render_template("dashboard.html")
 
 

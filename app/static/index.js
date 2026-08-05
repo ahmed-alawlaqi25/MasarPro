@@ -97,7 +97,7 @@ document.querySelector("#file-upload").addEventListener("invalid", (e) => {
 });
 
 const job = document.getElementsByClassName('header-application');
-const delete_document = document.querySelectorAll('.delete-button-documents');
+const delete_document = document.querySelectorAll('.primary-btn');
 
 
 delete_document.forEach(delete_button => {
