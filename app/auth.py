@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 from supabase import create_client
 import os
 from dotenv import load_dotenv
+from extensions import limiter
+import re
 
 load_dotenv()
 
@@ -11,25 +13,29 @@ auth = Blueprint("auth", __name__)
 
 
 @auth.route("/register", methods=["GET", "POST"])
+@limiter.limit("3 per minute")
 def register():
     if "user_id" in session:
         return redirect(url_for("views.tracker"))
 
     if request.method == "POST":
         register_data = request.form
+        if register_data.get("website"):
+            return redirect(url_for("auth.confirmemail"))
+
         email = register_data.get("email")
+        if not email or not re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", email):
+            error_message = "البريد الإلكتروني غير صالح."
+            return render_template("register.html", error_message=error_message)
+
         try:
-            supabase.auth.sign_in_with_otp({
-                "email": email
-            })
+            supabase.auth.sign_in_with_otp({"email": email})
         except Exception as e:
             print(e)
             error_message = "حدث خطأ ما، يرجى المحاولة مرة أخرى."
             return render_template("register.html", error_message=error_message)
 
         return redirect(url_for("auth.confirmemail"))
-    else:
-        return render_template("register.html")
 
 
 @auth.route("/confirmemail")
