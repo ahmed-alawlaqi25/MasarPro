@@ -126,9 +126,12 @@ def application(job_id):
     document_response = user_supabase.table("resumes").select("*").eq("user_id", user_id).execute()
     documents = document_response.data
 
-    for doc in documents:
-        signed = service_supabase.storage.from_("documents").create_signed_url(doc["document_url"], 3600)
-        doc["document_url"] = signed["signedURL"]
+    if documents:
+        paths = [doc["document_url"] for doc in documents]
+        signed_response = service_supabase.storage.from_("documents").create_signed_urls(paths, 3600)
+        print(signed_response)
+        for doc, signed in zip(documents, signed_response):
+            doc["document_url"] = signed["signedURL"]
 
     return render_template("application.html", jobs=jobs, documents=documents)
 
