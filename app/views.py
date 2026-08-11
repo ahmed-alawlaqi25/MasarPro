@@ -111,18 +111,21 @@ def get_user_supabase():
     return user_supabase
 
 
+service_supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_SERVICE_ROLE_KEY"))
+
+
 @views.route("/application/<job_id>", methods=["GET"])
 def application(job_id):
     user_id = session["user_id"]
     user_supabase = get_user_supabase()
     if not user_supabase:
         return redirect(url_for("auth.register"))
+
     job_info_response = user_supabase.table("job").select("*").eq("job_id", job_id).execute()
     jobs = job_info_response.data
     document_response = user_supabase.table("resumes").select("*").eq("user_id", user_id).execute()
     documents = document_response.data
 
-    service_supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_SERVICE_ROLE_KEY"))
     for doc in documents:
         signed = service_supabase.storage.from_("documents").create_signed_url(doc["document_url"], 3600)
         doc["document_url"] = signed["signedURL"]
