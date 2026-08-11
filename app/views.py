@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import time
 import os
 import resend
+from concurrent.futures import ThreadPoolExecutor
 
 load_dotenv()
 
@@ -121,15 +122,22 @@ def application(job_id):
     if not user_supabase:
         return redirect(url_for("auth.register"))
 
-    job_info_response = user_supabase.table("job").select("*").eq("job_id", job_id).execute()
+    with ThreadPoolExecutor() as executor:
+        job_future = executor.submit(
+            lambda: user_supabase.table("job").select("*").eq("job_id", job_id).execute()
+        )
+        doc_future = executor.submit(
+            lambda: user_supabase.table("resumes").select("*").eq("user_id", user_id).execute()
+        )
+        job_info_response = job_future.result()
+        document_response = doc_future.result()
+
     jobs = job_info_response.data
-    document_response = user_supabase.table("resumes").select("*").eq("user_id", user_id).execute()
     documents = document_response.data
 
     if documents:
         paths = [doc["document_url"] for doc in documents]
         signed_response = service_supabase.storage.from_("documents").create_signed_urls(paths, 3600)
-        print(signed_response)
         for doc, signed in zip(documents, signed_response):
             doc["document_url"] = signed["signedURL"]
 
