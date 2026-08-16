@@ -839,7 +839,8 @@ button {
 .secondary-btn {
     background: transparent;
     color: #d7dde8;
-
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, .18);
 }
 
@@ -1065,8 +1066,8 @@ textarea::placeholder {
     background: #111827;
     color: #F9F7F7;
     border: 1px solid #00ADB5;
-    padding: 0.2rem 0.5rem;
-    border-radius: 12px;
+    padding: 8px 16px;
+    border-radius: 6px;
     cursor: pointer;
 }
 
