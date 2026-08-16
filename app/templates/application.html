@@ -85,10 +85,9 @@
                     <div class="application-document">
                             <h5>{{ document['document_name'] }}</h5>
                         <div class="application-document">
-                            <button class="secondary-btn">
-                                <i class="bi bi-eye"></i>
-                                عرض
-                            </button>
+                             <a  class="secondary-btn" href="{{document['document_url']}}" target="_blank" rel="noopener noreferrer">عرض
+                                 <i class="fa-regular fa-file-pdf"></i>
+                             </a>
                              <button class="primary-btn" id="unlink_document_cv" value="{{ job['CV_id'] }}">
                                 <i class="bi bi-download"></i>
                                 فصل
@@ -122,6 +121,7 @@
                             <h5>{{ document['document_name'] }}</h5>
                         <div class="application-document">
                              <a  class="secondary-btn" href="{{document['document_url']}}" target="_blank" rel="noopener noreferrer">عرض
+                                 <i class="fa-regular fa-file-pdf"></i>
                              </a>
                              <button class="primary-btn" id="unlink_document_cover" value="{{ job['CV_id'] }}">
                                 <a href="{{ document['document_url'] }}" target="_blank" rel="noopener noreferrer">فصل

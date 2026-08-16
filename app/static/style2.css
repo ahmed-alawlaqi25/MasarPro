@@ -1065,8 +1065,8 @@ textarea::placeholder {
     background: #111827;
     color: #F9F7F7;
     border: 1px solid #00ADB5;
-    padding: 8px 16px;
-    border-radius: 6px;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
     cursor: pointer;
 }
 
