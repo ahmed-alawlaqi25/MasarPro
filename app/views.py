@@ -201,7 +201,7 @@ def document():
     response = (
         user_supabase
         .table("resumes")
-        .select("document_name", "resumes_id", "document_url")
+        .select("*")
         .eq("user_id", user_id)
         .execute()
     )
