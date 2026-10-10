@@ -1,43 +1,41 @@
 # MasarPro (مسار برو)
 
-A job application tracker built with Flask and Supabase — Kanban-style board, magic link auth, resume/cover letter management, and RLS-secured multi-user data isolation.
+MasarPro helps you track job applications and keep your CVs and cover letters in one place.
 
-🔗 Live: [masarpro.app](https://masarpro.app)
+I built this version with Flask and Supabase as my first full-stack project. I learned a lot from building, deploying, and fixing problems after launch. Some parts need cleanup, so I’m rebuilding the app with React and Node/Express.
 
-> **Note:** This is my first full-stack project, built from scratch to learn backend development. The code is functional but not clean — I'm aware of the rough edges (see below). I'm currently rebuilding it with a Node/Express + React stack to apply what I learned the first time around with better architecture.
+[Live website](https://masarpro.app)
 
 ## Features
 
-- **Magic link authentication** — passwordless login via Supabase Auth + custom SMTP (Resend)
-- **Kanban job tracker** — drag-and-drop cards across status columns (Wishlist → Applied → Interviewing → Offered → Accepted), with persistent state synced to the database
-- **Document management** — upload CVs and cover letters, link specific documents to specific job applications, secure signed URLs for private file access
-- **Row Level Security (RLS)** — every user's data is isolated at the database level, not just the application level
-- **Rate limiting & spam protection** — honeypot fields and request validation on public endpoints after discovering a real bot attack in production
+- Passwordless login through Supabase magic links, with email sent through Resend.
+- A drag-and-drop board for moving applications through Wishlist, Applied, Interviewing, Offered, and Accepted.
+- CV and cover letter uploads, with documents linked to individual applications.
+- Private document access through signed URLs.
+- Supabase Row Level Security policies to keep each user’s data separate.
+- Rate limits, honeypot fields, and request validation added after a bot attack in production.
 
-## Tech Stack
+## Built with
 
-- **Backend:** Python, Flask
-- **Database & Auth:** Supabase (PostgreSQL, Auth, Storage)
-- **Frontend:** Jinja2, vanilla JavaScript, CSS
-- **Email:** Resend (SMTP)
-- **Hosting:** Render
-- **Domain/DNS:** Cloudflare
+- Python and Flask
+- Supabase PostgreSQL, Auth, and Storage
+- Jinja2, vanilla JavaScript, and CSS
+- Resend for email
+- Render for hosting
+- Cloudflare for DNS
 
-## What I Learned
+## What I learned
 
-This project was my introduction to:
-- Designing and securing a relational database schema with RLS policies
-- Token-based auth flows (access/refresh tokens, session management, handling expiry)
-- Building drag-and-drop UI with vanilla JS event handling
-- Debugging a real production security gap — discovered and fixed an RLS misconfiguration that could have exposed cross-user data
-- Performance optimization — reduced a slow route from ~7s to ~1.7s using parallel queries and batched signed URL requests
-- The gap between understanding a concept and being able to write it from scratch under pressure
+Working on MasarPro taught me how to handle authentication, sessions, database permissions, and private file access.
 
-## Known Issues / Why It's Being Rebuilt
+I found and fixed an RLS configuration error with the potential to expose data between users. This pushed me to check database permissions more carefully.
 
-- Frontend logic is tightly coupled to Jinja2 templates, making the JS harder to maintain
-- Some routes have inconsistent patterns from earlier iterations before I standardized on user-scoped Supabase clients
-- No test coverage
-- The rebuild uses React + Node/Express with cleaner separation of concerns, learned directly from this version's mistakes
+I also reduced one route’s response time from about 7 seconds to 1.7 seconds by running independent queries in parallel and batching signed URL requests.
 
+Building the drag-and-drop board helped me practice JavaScript event handling. Maintaining the app showed me where my early design choices made changes harder.
 
+## Why I’m rebuilding
+
+The JavaScript is closely tied to the Jinja2 templates. Some routes still use patterns from earlier versions, and the project has no automated tests.
+
+The React and Node/Express version gives me a chance to separate the frontend from the backend, use consistent patterns, and apply what I learned from this version.
